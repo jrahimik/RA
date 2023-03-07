@@ -5,16 +5,15 @@
 ```bash
 PrediXcan
 ├── PrediXcan.py
-├── README.md
+├── PrediXcan_Workflow.md
 ├── convert_plink_to_dosage.py
 ├── genotype
 │   └── chr{1..23}.txt.gz
 └── results
     ├── ensemble2gene-tab.map
-    ├── map_genes.R
+    └── map_genes.R
     └── {*}_predicted_expression.txt
 ```
-
 
 ## Converting Plink Files to Dosage
 
@@ -28,6 +27,15 @@ python3 convert_plink_to_dosage.py \
 ```
 
 `<file_basename>` is the prefix of the `.bim`, `.bed`, `.fam` files. `<path_to_plink_executable>` can be found by typing `which plink` in shell. `output_directory` is `genotype` in the structure above.
+
+For example,
+
+```bash
+python3 convert_plink_to_dosage.py \
+        -b racer-mega-imputed-f-matched-v3-QC \ 
+        -o genotype1/chr \ 
+        -p /ihome/crc/install/plink/1.90_20230116/plink
+```
 
 
 ## Running PrediXcan
@@ -48,8 +56,52 @@ The weights can be downloaded from PredictDB [here](https://predictdb.org/post/2
 
 Direct link to tar with files for PrediXcan’s support on expression is [here](https://zenodo.org/record/3518299/files/mashr_eqtl.tar?download=1)
 
+For example,
+```bash
+python3 PrediXcan.py \
+        --predict \ 
+        --dosages ./genotype \ 
+        --dosages_prefix chr \ 
+        --samples racer-mega-imputed-f-matched-v3-QC.fam \ 
+        --weights en_Whole_Blood.db \ 
+        --output_prefix results/en_Whole_Blood
+```
+
+
+
+
 ## Mapping Gene Names from Ensembl IDs(ENSG...) to Names
 
 ```bash
 Rscript map_genes.R <predicted_expression_file>
+```
+
+For example,
+
+```bash
+Rscript map_genes.R en_Whole_Blood_predicted_expression.txt
+```
+
+
+## Combined Code
+
+
+```bash
+mkdir genotype
+python3 convert_plink_to_dosage.py \
+        -b racer-mega-imputed-f-matched-v3-QC \ 
+        -o genotype1/chr \ 
+        -p /ihome/crc/install/plink/1.90_20230116/plink
+
+
+python3 PrediXcan.py \
+        --predict \ 
+        --dosages ./genotype \ 
+        --dosages_prefix chr \ 
+        --samples racer-mega-imputed-f-matched-v3-QC.fam \ 
+        --weights en_Whole_Blood.db \ 
+        --output_prefix results/en_Whole_Blood
+
+cd results
+Rscript map_genes.R en_Whole_Blood_predicted_expression.txt     
 ```
