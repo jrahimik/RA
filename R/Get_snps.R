@@ -1,7 +1,7 @@
 library(dplyr)
 
 
-map_data <- read.table("C:/Users/javad/Documents/GitHub/RAGit/Data/snp_2_gene.map",header=T)
+#map_data <- read.table("C:/Users/javad/Documents/GitHub/RAGit/Data/snp_2_gene.map",header=T)
 
 
 
