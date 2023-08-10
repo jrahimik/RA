@@ -17,7 +17,7 @@ library(dplyr)
 #' @examples
 #'
 #'
-Get_snps <- function(membership_Sets,gene_snp_map){
+Get_snps <- function(membership_Sets,map_data){
 
 Sets_snps <- list()
 
