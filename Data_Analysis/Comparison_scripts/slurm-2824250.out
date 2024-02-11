@@ -1,0 +1,25 @@
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.3     ✔ purrr   1.0.1
+✔ tibble  3.2.1     ✔ dplyr   1.1.1
+✔ tidyr   1.3.0     ✔ stringr 1.5.0
+✔ readr   2.1.2     ✔ forcats 1.0.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks biomaRt::select()
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "Processing B cell"
+[1] "Processing module 1"
+[1] "no of genes for B cell for module length 54 is 37"
+Loading required package: caret
+Loading required package: lattice
+slurmstepd: error: *** JOB 2824250 ON htc-n26 CANCELLED AT 2024-01-30T13:18:43 ***
